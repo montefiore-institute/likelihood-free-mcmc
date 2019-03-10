@@ -14,6 +14,14 @@ class: middle, center
 # background
 ---
 ## Posterior inference
+
+Given an model $M$ generating observations $x \in \mathbb{R}^d$ under parameters $\theta$,
+then the posterior $p(\theta\vert x)$ for a set of observations $O$ is
+
+$$\displaystyle p(\theta\vert x) = \prod_{x \in O} \frac{p(\theta)p(x\vert\theta)}{p(x)}.$$
+
+This can be evaluated easily when one has access the *likelihood* $p(x\vert\theta)$ and the *evidence* $p(x)$.
+
 ---
 ## Markov chain Monte Carlo
 
@@ -89,8 +97,22 @@ What if the likelihood $p(x\vert\theta)$ is also intractable?
 <br>
 $$p(\theta\vert x) = \frac{p(\theta)\cancel{p(x\vert\theta)}}{\cancel{p(x)}}$$
 ---
+
+---
 class: middle, center
 # method
+
+**tldr**: instead of building a density estimator for $p(x\vert\theta)$, can we estimate the likelihood ratio directly and use this in MCMC samplers?
+---
+## Approximate likelihood ratios
+When comparing two hypothesis $\theta_0$ and $\theta_1$, one can train a classifier $s$ to distinguish samples
+$x \sim p(x\vert\theta_0)$ and $x \sim p(x\vert\theta_1)$, this yields the optimal probablistic classifier
+$$s^*(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_0) + p(x\vert\theta_1)}.$$
+
+<br>
+<br>
+**Why?**
+
 ---
 class: middle, center
 # experiments
