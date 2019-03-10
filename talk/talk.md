@@ -57,7 +57,7 @@ $\rightarrow$ Does not depend on the intractable evidence $p(x)$!
 - **Wide transition distribution**
  - Lower acceptance rate
  - Does not necessaraly mean a low autocorrelation, e.g., high rejection rate.
-- **Multimodel posterior**
+- **Multimodal posterior**
  - Can the transition distribution yield proposals which jump across different modes?
 
 <br>
@@ -65,11 +65,29 @@ $\rightarrow$ Does not depend on the intractable evidence $p(x)$!
 **Ideally**: the transition distribution should be identical in shape to the posterior.
 ---
 ### Hamiltonian Monte Carlo
+> Designing appropriate transitions are annoying, can we get rid of them?
+
+**Idea**: model the likelihood as a potential energy surface
+$$U(\theta) = -\log p(x\vert\theta),$$
+and assign some kinetic energy to the current state $\theta_t$
+$$K(\theta) = \frac{1}{2}m^2~~~~\text{with}~m\sim q(m).$$
+<br>
+$\rightarrow$ Simulate Hamiltonian dynamics to extract a proposal $\theta'$!
+
+- Significantly smaller autocorrelation
+- Ability to capture different modes
+- Comes at a computational cost, but has a higher acceptance rate.
+
+---
+<iframe style="position:absolute;top:0;left:0;" width="100%" height="100%" src="https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana" frameborder="0" allowfullscreen></iframe>
 ---
 class: middle, center
 # problem setting
 
 What if the likelihood $p(x\vert\theta)$ is also intractable?
+<br>
+<br>
+$$p(\theta\vert x) = \frac{p(\theta)\cancel{p(x\vert\theta)}}{\cancel{p(x)}}$$
 ---
 class: middle, center
 # method
