@@ -137,11 +137,23 @@ $\rightarrow$ Adds an additional hyperparameter to the optimization algorithm.
 ---
 ### Proposed solution
 
-**Idea**: ensure support for all $\theta \in \Theta$.
+**Idea**: ensure support for all $\theta \in \Theta$ during training $\rightarrow$ proper constraints.
 
-<br>
 Train the classifier to distinguish samples from $p(x\vert\theta)$ and the evidence $p(x)$.
 
+Under this formalism, the decision function of $s(x, \theta)$ becomes
+
+$$s(x, \theta) = \frac{p(x\vert\theta)}{p(x\vert\theta) + p(x)}.$$
+
+<br>
+.center.width-90[![](./assets/decision.png)]
+---
+class: middle, center
+# application to MCMC samplers
+---
+## Likelihood-free Metropolis-Hastings
+---
+## Likelihood-free Hamiltonian Monte Carlo
 ---
 class: middle, center
 # experiments
@@ -155,13 +167,6 @@ class: middle, center
 class: middle, center
 # future work
 ---
-# References
-.smaller[
-1. Metropolis et al., Equation of state calculations by fast computing machines. (1953)
-2. Hastings, Monte Carlo sampling methods using Markov chains and their applications. (1970)
-]
----
-
 class: end-slide, center
 count: false
 
