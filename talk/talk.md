@@ -100,7 +100,7 @@ $$p(\theta\vert x) = \frac{p(\theta)\cancel{p(x\vert\theta)}}{\cancel{p(x)}}$$
 class: middle, center
 # method
 
-**tldr**: instead of building a density estimator for $p(x\vert\theta)$, can we estimate the likelihood ratio directly and use this in MCMC samplers?
+**tldr**: we build a model $s(x, \theta)$ which estimates the likelihood ratio, and embed the likelihood ratio model into common MCMC samplers.
 ---
 ## Approximate likelihood ratios
 When comparing two hypothesis $\theta_0$ and $\theta_1$, one can train a classifier $s$ to distinguish samples
@@ -129,11 +129,19 @@ Using the optimal classifier $s(x, \theta)$,
 
 $$\log r(x, \theta\_0, \theta\_1) = \log\frac{s(x, \theta\_0)}{1 - s(x, \theta\_0)} - \log\frac{s(x, \theta\_1)}{1 - s(x, \theta\_1)}.$$
 
-<br>
-<br>
 **Problem solved?**
+
+$\rightarrow$ What if there is no support between $p(x\vert\theta)$ and $p(x\vert\theta\_\text{ref})$?
+
+$\rightarrow$ Adds an additional hyperparameter to the optimization algorithm.
 ---
-### Issues with reference hypothesis
+### Proposed solution
+
+**Idea**: ensure support for all $\theta \in \Theta$.
+
+<br>
+Train the classifier to distinguish samples from $p(x\vert\theta)$ and the evidence $p(x)$.
+
 ---
 class: middle, center
 # experiments
