@@ -149,14 +149,43 @@ $$s(x, \theta) = \frac{p(x\vert\theta)}{p(x\vert\theta) + p(x)}.$$
 .center.width-90[![](./assets/decision.png)]
 ---
 class: middle, center
-# application to MCMC samplers
+# likelihood-free MCMC samplers
 ---
 ## Likelihood-free Metropolis-Hastings
+Adapting Metropolis-Hastings into a likelihood-free alternative is quite trivial. We just have to modify the likelihood ratio evaluation from
+
+$$\log r(O, \theta', \theta\_t) = \sum\_{x \in O} \log p(x\vert\theta') - \sum\_{x \in O} \log p(x\vert\theta_t)$$
+
+to
+
+$$\log r(O, \theta', \theta\_t) = \sum\_{x \in O} \log\frac{s(x,\theta')}{1 - s(x,\theta')} - \sum\_{x \in O}\log\frac{s(x,\theta\_t)}{1 - s(x,\theta\_t)}.$$
+
 ---
 ## Likelihood-free Hamiltonian Monte Carlo
+
+To simulate the Hamiltonian dynamics, Hamiltonian Monte Carlo requires
+$$\nabla\_\theta~U(\theta) = \nabla\_\theta~\log p(x\vert\theta).$$
+**Tricky**, the sampler needs to be likelihood-free... However, remember that
+$$\nabla\_\theta \log p(x\vert\theta) = -\frac{\nabla_\theta~p(x\vert\theta)}{p(x\vert\theta)},$$
+and we have access the a *differentiable* classifier $s(x, \theta)$ (neural network).
+---
+Assuming an optimal classifier $s(x, \theta)$.
+$$\nabla\_\theta \log p(x\vert\theta) = -\frac{\displaystyle\frac{\partial}{\partial\theta}\left[\frac{s(x, \theta)}{1 - s(x, \theta)}\right]}{\displaystyle \frac{s(x, \theta)}{1 - s(x, \theta)}}$$
+
+$$\iff \nabla\_\theta \log p(x\vert\theta) = -\frac{\displaystyle\frac{\partial}{\partial\theta}\left[\frac{p(x\vert\theta)}{p(x)}\right]}{\displaystyle \frac{p(x\vert\theta)}{p(x)}}$$
+
+$$\iff \nabla\_\theta \log p(x\vert\theta) = -\frac{\displaystyle\frac{1}{p(x)}\nabla\_\theta~p(x\vert\theta)}{\displaystyle\frac{1}{p(x)}p(x\vert\theta)}$$
+
+$$\iff \nabla\_\theta \log p(x\vert\theta) = -\frac{\nabla\_\theta~p(x\vert\theta)}{p(x\vert\theta)}$$
+---
+class: middle
+Even with approximate classifiers this still works reasonably well:
+
+.center.width-100[![](./assets/grad_likelihood.png)]
 ---
 class: middle, center
-# experiments
+# results
+(finally)
 ---
 ## Linear probabilistic model
 ---
