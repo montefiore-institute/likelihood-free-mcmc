@@ -185,8 +185,19 @@ class: middle, center
 Problem independent parameterized classifier $s(x, \theta)$ (trained once).
 ---
 ## Particle tracker alignment
+.center.width-60[![](./assets/experiment_particle.png)]
 ---
 ## Gravitational strong lensing
+<br>
+In this experiment we are interesting in the intrinsic parameters of a strong gravitational lens and accompanying dark matter subhalo.
+<br>
+<br>
+.center.width-50[![](./assets/experiment_lens.png)]
+<br>
+$s(x, \theta)$ is VGG-11 with the dependence on $\theta$ added in the fully connected part.
+---
+class:middle
+.center.width-80[![](./assets/experiment_lens_posterior.png)]
 ---
 class: middle, center
 # future work
