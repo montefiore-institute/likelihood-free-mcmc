@@ -48,7 +48,7 @@ $\rightarrow$ Does not depend on the intractable evidence $p(x)$!
 - The transition distribution is also called the proposal distribution in literature.
 ]
 ---
-### Issues with parameteric proposal distributions
+### Issues with parameteric transition distributions
 <br>
 <br>
 - **Sharp transition distribution**
