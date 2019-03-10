@@ -97,8 +97,6 @@ What if the likelihood $p(x\vert\theta)$ is also intractable?
 <br>
 $$p(\theta\vert x) = \frac{p(\theta)\cancel{p(x\vert\theta)}}{\cancel{p(x)}}$$
 ---
-
----
 class: middle, center
 # method
 
@@ -106,13 +104,36 @@ class: middle, center
 ---
 ## Approximate likelihood ratios
 When comparing two hypothesis $\theta_0$ and $\theta_1$, one can train a classifier $s$ to distinguish samples
-$x \sim p(x\vert\theta_0)$ and $x \sim p(x\vert\theta_1)$, this yields the optimal probablistic classifier
-$$s^*(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_0) + p(x\vert\theta_1)}.$$
+$x \sim p(x\vert\theta_0)$ and $x \sim p(x\vert\theta_1)$. This yields the optimal probablistic classifier
+
+$$s(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_0) + p(x\vert\theta_1)}.$$
+
+Then the likelihood ratio $r(x)$ of $p(x\vert\theta_0)$ against $p(x\vert\theta_1)$ is,
+
+$$r(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_1)} = \frac{s(x)}{1 - s(x)}.$$
+
+$\rightarrow$ *Supervised classification is equivalent to likelihood ratio estimation.*
+
+**However**, training $s$ for every $\theta$ is rather cumbsersome...
+---
+### Parameterized classifiers
+Include $\theta$ as input in $s(x, \theta)$ and use a *reference hypothesis* to classify against.
+
+$$s(x, \theta) = \frac{p(x\vert\theta)}{p(x\vert\theta) + p(x\vert\theta_\text{ref})}$$
+
+Then the $\log r(x, \theta_0, \theta_1)$ can be written as
+
+$$\log r(x, \theta\_0, \theta\_1) = \log\frac{p(x\vert\theta\_0)}{p(x\vert\theta\_1)}= \log\frac{p(x\vert\theta\_0)}{p(x\vert\theta\_\text{ref})} - \log\frac{p(x\vert\theta\_1)}{p(x\vert\theta\_\text{ref})}.$$
+
+Using the optimal classifier $s(x, \theta)$,
+
+$$\log r(x, \theta\_0, \theta\_1) = \log\frac{s(x, \theta\_0)}{1 - s(x, \theta\_0)} - \log\frac{s(x, \theta\_1)}{1 - s(x, \theta\_1)}.$$
 
 <br>
 <br>
-**Why?**
-
+**Problem solved?**
+---
+### Issues with reference hypothesis
 ---
 class: middle, center
 # experiments
