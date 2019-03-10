@@ -1,7 +1,7 @@
 class: title-slide
 count: false
 
-# Likelihood-free MCMC<br>using Approximate Likelihood Ratios
+# Likelihood-free Markov chain Monte Carlo<br>using Approximate Likelihood Ratios
 
 <br>
 
@@ -23,7 +23,7 @@ $$p(\theta\vert x) = \frac{p(\theta)p(x\vert\theta)}{p(x)}$$
 
 Typically, the evidence $p(x)$ is intractable, but pointwise evaluations of the likelihood $p(x\vert\theta)$ are possible.
 
-**Idea**: Approximate the posterior by creating a *chain* of *dependent* posterior samples by evaluating the transition $\theta_t \rightarrow \theta'$ using the *likelihood-ratio*.
+**Idea**: Approximate the posterior by creating a *chain* of *dependent* posterior samples through evaluating the transition $\theta_t \rightarrow \theta'$ using the *likelihood-ratio*.
 
 $$
   \frac{p(\theta'\vert x)}{p(\theta_t\vert x)} =
@@ -44,7 +44,7 @@ $\rightarrow$ Does not depend on the intractable evidence $p(x)$!
 .center.width-70[![](./figures/animation-mh.gif)]
 
 .footnote[
-- Animation from stata software (too lazy to make my own).
+- Animation from stata software.
 - The transition distribution is also called the proposal distribution in literature.
 ]
 ---
