@@ -44,11 +44,25 @@ $\rightarrow$ Does not depend on the intractable evidence $p(x)$!
 .center.width-70[![](./figures/animation-mh.gif)]
 
 .footnote[
-- Animation from stata software.
+- Credit: animation from stata software.
 - The transition distribution is also called the proposal distribution in literature.
 ]
 ---
 ### Issues with parameteric proposal distributions
+<br>
+<br>
+- **Sharp transition distribution**
+ - High autocorrelation
+ - High acceptance rate
+- **Wide transition distribution**
+ - Lower acceptance rate
+ - Does not necessaraly mean a low autocorrelation, e.g., high rejection rate.
+- **Multimodel posterior**
+ - Can the transition distribution yield proposals which jump across different modes?
+
+<br>
+<br>
+**Ideally**: the transition distribution should be identical in shape to the posterior.
 ---
 ### Hamiltonian Monte Carlo
 ---
