@@ -13,16 +13,6 @@ count: false
 class: middle, center
 # background
 ---
-## Posterior inference
-
-Given an model $M$ generating observations $x \in \mathbb{R}^d$ under parameters $\theta$,
-then the posterior $p(\theta\vert x)$ for a set of observations $O$ is
-
-$$\displaystyle p(\theta\vert x) = \prod_{x \in O} \frac{p(\theta)p(x\vert\theta)}{p(x)}.$$
-
-This can be evaluated easily when one has access the *likelihood* $p(x\vert\theta)$ and the *evidence* $p(x)$.
-
----
 ## Markov chain Monte Carlo
 
 Consider the posterior density:
@@ -184,10 +174,15 @@ Even with approximate classifiers this still works reasonably well:
 .center.width-100[![](./assets/grad_likelihood.png)]
 ---
 class: middle, center
-# results
+# some results
 (finally)
 ---
 ## Linear probabilistic model
+<br>
+<br>
+.center.width-100[![](./assets/experiment_linear.png)]
+<br>
+Problem independent parameterized classifier $s(x, \theta)$ (trained once).
 ---
 ## Particle tracker alignment
 ---
