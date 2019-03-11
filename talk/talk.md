@@ -231,7 +231,7 @@ class: middle, center
 2. Generate dataset $D$ of tuples $(\theta, x\_\theta)$ where $x\_\theta \sim p(x\vert\theta)$ and $\theta\sim p(\theta)$.
 3. Train ensemble of $s(x, \theta)$ on $D$.
   - Save $s(x, \theta)$ at every epoch.
-5. Compute the *Simulated Based Callibration* diagnostic.
+5. Compute the *Simulation Based Callibration* diagnostic.
 6. When diagnostic fails, use approximate posterior to set new $p(\theta)$.
   - Goto 1.
 
