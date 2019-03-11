@@ -1,5 +1,7 @@
 # Instructions
 
+**Note**: a live version is available (here)[https://joerihermans.com/talks/lfmcmc/].
+
 1. Clone this repository:
 ```
 git clone https://github.com/montefiore-ai/likelihood-free-mcmc
