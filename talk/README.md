@@ -1,6 +1,6 @@
 # Instructions
 
-**Note**: a live version is available (here)[https://joerihermans.com/talks/lfmcmc/].
+**Note**: a live version is available [here](https://joerihermans.com/talks/lfmcmc/).
 
 1. Clone this repository:
 ```
