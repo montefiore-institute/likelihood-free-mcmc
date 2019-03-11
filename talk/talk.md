@@ -224,6 +224,9 @@ class: middle
 .center.width-60[![](./assets/experiment_particle.png)]
 ---
 class: middle, center
+# in practice
+---
+class: middle, center
 # future work
 ---
 class: end-slide, center
