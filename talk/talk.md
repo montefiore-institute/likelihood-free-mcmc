@@ -102,7 +102,7 @@ $$s(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_0) + p(x\vert\theta_1)}.$$
 **Why?**
 ---
 ## Proof
-Let $Y = \\\{0, 1\\\}$, then the optimal classifier $s(x)$ is
+Let the class labels $Y = \\\{0, 1\\\}$, then the optimal classifier $s(x)$ is
 $$s(x) = \underset{\phi}{\arg\min} \mathbb{E}\_{y\vert x}\left[(y - s\_\phi(x))^2\right]$$
 $$\iff \underset{\phi}{\arg\min} \mathbb{E}\_{y\vert x}\left[y^2 - 2 s\_\phi(x)y + s\_\phi(x)^2\right]$$
 $$\iff \underset{\phi}{\arg\min} \cancel{\mathbb{E}\_{y\vert x}x\left[y^2\right]} - 2 s\_\phi(x)\mathbb{E}\_{y\vert x}\left[y\right] + s\_\phi(x)^2$$
@@ -225,6 +225,21 @@ class: middle
 ---
 class: middle, center
 # in practice
+---
+## General cooking recipe
+1. Set $p(\theta)$.
+2. Generate dataset $D$ with tuples $(\theta, x\_\theta)$ where $x\_\theta \sim p(x\vert\theta)$.
+3. Train ensemble of $s(x, \theta)$ on $D$.
+  - Save $s(x, \theta)$ at every epoch.
+5. Compute the *Simulated Based Callibration* diagnostic.
+6. When diagnostic fails, use approximate posterior to set new $p(\theta)$.
+  - Goto 1.
+
+<br>
+<br>
+**Convergence heuristic**:
+
+Rely on the variance (over the ensemble) of the decision function.
 ---
 class: middle, center
 # future work
