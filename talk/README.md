@@ -1,30 +1,17 @@
-# talk-template
-
-A ready-to-fork template for talks, using [remark](https://github.com/gnab/remark), [KaTeX](https://github.com/Khan/KaTeX) and some customised CSS.
-
-## Instructions
+# Instructions
 
 - Clone this repository:
 ```
-git clone https://github.com/JoeriHermans/talk-template.git
-cd talk-template
+git clone https://github.com/montefiore-ai/likelihood-free-mcmc
+cd likelihood-free-mcmc/talk
 ```
 - Start an HTTP server to serve the slides:
 ```
-python -m http.server 8001
+python -m http.server 8000
 ```
-- Edit `talk.md` for making your slides.
+- Visit [localhost:8000#7](http://localhost:8000#7)
+  - It is best to load the 7th slide first to initialize the Hamiltonian Monte Carlo animation.
 - Use [decktape](https://github.com/astefanutti/decktape) for exporting your slides to PDF.
-
-## Markup language
-
-Slides are written in Markdown. See the remark [documentation](https://github.com/gnab/remark/wiki/Markdown) for further details regarding the supported features.
-
-This template also comes with grid-like positioning CSS classes (see `assets/grid.css`) and other custom CSS classes (see `assets/style.css`)
-
-## Integration with GitHub pages
-
-Slides can be readily integrated with [GitHub pages](https://pages.github.com/) by hosting the files in a GitHub repositery and enabling Pages in the Settings tab.
 
 ## Credits
 
