@@ -118,7 +118,7 @@ $$p(y=1\vert x) = \frac{p(y=1)p(x\vert y=1)}{p(x)},$$
 $$\iff \frac{p(y=1)p(x\vert y=1)}{p(y=1)p(x\vert y=1) + p(y=0)p(x\vert y=0)}.$$
 Assuming an equally balanced dataset $p(y=1) = p(y=0) = \frac{1}{2}$ we obtain,
 $$\frac{p(x\vert y=1)}{p(x\vert y=1) + p(x\vert y=0)}.$$
-Samples with $y=1$ are $x \sim p(x\vert\theta\_0)$ and $y=0$ are $x \sim p(x\vert\theta\_1)$, then
+Samples from $y=1$ are $x \sim p(x\vert\theta\_0)$ and $y=0$ are $x \sim p(x\vert\theta\_1)$, then
 $$s(x) = \frac{p(x\vert\theta\_0)}{p(x\vert\theta\_0) + p(x\vert\theta\_1)}$$
 ---
 ## Approximate likelihood ratios
