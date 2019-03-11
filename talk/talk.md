@@ -77,7 +77,8 @@ $\rightarrow$ Simulate Hamiltonian dynamics to extract a proposal $\theta'$!
 - Comes at a computational cost, but has a higher acceptance rate.
 
 ---
-<iframe style="position:absolute;top:0;left:0;" width="100%" height="100%" src="https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana" frameborder="0" allowfullscreen></iframe>
+.footnote[Taken from: https://chi-feng.github.io/mcmc-demo/]
+<iframe style="position:absolute;top:0;left:0; z-order: -1;" width="100%" height="100%" src="https://chi-feng.github.io/mcmc-demo/app.html#HamiltonianMC,banana" frameborder="0" allowfullscreen></iframe>
 ---
 class: middle, center
 # problem setting
@@ -91,6 +92,34 @@ class: middle, center
 # method
 
 **tldr**: we build a model $s(x, \theta)$ which estimates the likelihood ratio, and embed the likelihood ratio model into common MCMC samplers.
+---
+## Approximate likelihood ratios
+When comparing two hypothesis $\theta_0$ and $\theta_1$, one can train a classifier $s$ to distinguish samples
+$x \sim p(x\vert\theta_0)$ and $x \sim p(x\vert\theta_1)$. This yields the optimal probablistic classifier
+
+$$s(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_0) + p(x\vert\theta_1)}.$$
+
+**Why?**
+---
+## Proof
+Let $Y = \\\{0, 1\\\}$, then the optimal classifier $s(x)$ is
+$$s(x) = \underset{\phi}{\arg\min} \mathbb{E}\_{y\vert x}\left[(y - s\_\phi(x))^2\right]$$
+$$\iff \underset{\phi}{\arg\min} \mathbb{E}\_{y\vert x}\left[y^2 - 2 s\_\phi(x)y + s\_\phi(x)^2\right]$$
+$$\iff \underset{\phi}{\arg\min} \cancel{\mathbb{E}\_{y\vert x}x\left[y^2\right]} - 2 s\_\phi(x)\mathbb{E}\_{y\vert x}\left[y\right] + s\_\phi(x)^2$$
+Which is minimized when
+$$\frac{\partial}{\partial\phi}\left[- 2 s\_\phi(x)\mathbb{E}\_{y\vert x}\left[y\right] + s\_\phi(x)^2\right] = 0.$$
+Solving for $s\_\phi(x)$ yields
+$$s\_\phi(x) = \mathbb{E}\_{y\vert x}\left[y\right].$$
+---
+## Proof
+For class labels $Y = \\\{0, 1\\\}$: $~\mathbb{E}\_{y\vert x}\left[y\right] = \cancel{0 \cdot p(y=0\vert x)} + 1 \cdot p(y=1\vert x).$
+Then,
+$$p(y=1\vert x) = \frac{p(y=1)p(x\vert y=1)}{p(x)},$$
+$$\iff \frac{p(y=1)p(x\vert y=1)}{p(y=1)p(x\vert y=1) + p(y=0)p(x\vert y=0)}.$$
+Assuming an equally balanced dataset $p(y=1) = p(y=0) = \frac{1}{2}$ we obtain,
+$$\frac{p(x\vert y=1)}{p(x\vert y=1) + p(x\vert y=0)}.$$
+Samples with $y=1$ are $x \sim p(x\vert\theta\_0)$ and $y=0$ are $x \sim p(x\vert\theta\_1)$, then
+$$s(x) = \frac{p(x\vert\theta\_0)}{p(x\vert\theta\_0) + p(x\vert\theta\_1)}$$
 ---
 ## Approximate likelihood ratios
 When comparing two hypothesis $\theta_0$ and $\theta_1$, one can train a classifier $s$ to distinguish samples
@@ -154,8 +183,8 @@ $$\log r(O, \theta', \theta\_t) = \sum\_{x \in O} \log\frac{s(x,\theta')}{1 - s(
 ## Likelihood-free Hamiltonian Monte Carlo
 
 To simulate the Hamiltonian dynamics, Hamiltonian Monte Carlo requires
-$$\nabla\_\theta~U(\theta) \triangleq \nabla\_\theta~\log p(x\vert\theta).$$
-**Tricky**, we need $\nabla\_\theta~\log p(x\vert\theta)$...
+$$\nabla\_\theta~U(\theta) \triangleq -\nabla\_\theta~\log p(x\vert\theta).$$
+**Tricky**, we need $-\nabla\_\theta~\log p(x\vert\theta)$...
 
 **Observation**: remember that
 $$\nabla\_\theta \log p(x\vert\theta) \equiv -\frac{\nabla_\theta~p(x\vert\theta)}{p(x\vert\theta)},$$
@@ -193,17 +222,6 @@ class: middle
 ---
 ## Particle tracker alignment
 .center.width-60[![](./assets/experiment_particle.png)]
----
-## Gravitational strong lensing
-<br>
-We are interested in the generating parameters of a strong gravitational lens and accompanying dark matter subhalo. The source and lensing plane are assumed to be placed at a specific *redshift*.
-<br>
-<br>
-.center.width-50[![](./assets/experiment_lens.png)]
-<br>
-$s(x, \theta)$ is VGG-11 with the dependence on $\theta$ added in the fully connected part.
----
-.center.width-80[![](./assets/experiment_lens_posterior.png)]
 ---
 class: middle, center
 # future work
