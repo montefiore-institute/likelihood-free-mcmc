@@ -11,7 +11,7 @@ cd likelihood-free-mcmc/talk
 ```
 python -m http.server 8000
 ```
-3. Visit [localhost:8000#7](http://localhost:8000)
+3. Visit [localhost:8000](http://localhost:8000)
 
 *Optional*:
 Use [decktape](https://github.com/astefanutti/decktape) for exporting your slides to PDF.
