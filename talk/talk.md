@@ -104,7 +104,7 @@ $$r(x) = \frac{p(x\vert\theta_0)}{p(x\vert\theta_1)} = \frac{s(x)}{1 - s(x)}.$$
 
 $\rightarrow$ *Supervised classification is equivalent to likelihood ratio estimation.*
 
-**However**, training $s$ for every $\theta$ is rather cumbsersome...
+**However**, training $s$ for every *hypothesis test* is rather cumbsersome...
 ---
 ### Parameterized classifiers
 Include $\theta$ as input in $s(x, \theta)$ and use a *reference hypothesis* to classify against.
@@ -129,7 +129,7 @@ $\rightarrow$ Adds an additional hyperparameter to the optimization algorithm.
 
 **Idea**: ensure support for all $\theta \in \Theta$ during training $\rightarrow$ proper constraints.
 
-Train the classifier to distinguish samples from $p(x\vert\theta)$ and the evidence $p(x)$.
+Train the classifier to distinguish samples from $p(x\vert\theta)$ and the $p(x)$.
 
 Under this formalism, the decision function of $s(x, \theta)$ becomes
 
@@ -154,9 +154,11 @@ $$\log r(O, \theta', \theta\_t) = \sum\_{x \in O} \log\frac{s(x,\theta')}{1 - s(
 ## Likelihood-free Hamiltonian Monte Carlo
 
 To simulate the Hamiltonian dynamics, Hamiltonian Monte Carlo requires
-$$\nabla\_\theta~U(\theta) = \nabla\_\theta~\log p(x\vert\theta).$$
-**Tricky**, the sampler needs to be likelihood-free... However, remember that
-$$\nabla\_\theta \log p(x\vert\theta) = -\frac{\nabla_\theta~p(x\vert\theta)}{p(x\vert\theta)},$$
+$$\nabla\_\theta~U(\theta) \triangleq \nabla\_\theta~\log p(x\vert\theta).$$
+**Tricky**, we need $\nabla\_\theta~\log p(x\vert\theta)$...
+
+**Observation**: remember that
+$$\nabla\_\theta \log p(x\vert\theta) \equiv -\frac{\nabla_\theta~p(x\vert\theta)}{p(x\vert\theta)},$$
 and we have access the a *differentiable* classifier $s(x, \theta)$ (neural network).
 ---
 Assuming an optimal classifier $s(x, \theta)$.
@@ -172,6 +174,8 @@ class: middle
 Even with approximate classifiers this still works reasonably well:
 
 .center.width-100[![](./assets/grad_likelihood.png)]
+
+**Interesting**: discrepancy between the closed form and approximation!
 ---
 class: middle, center
 # some results
@@ -184,19 +188,21 @@ class: middle, center
 <br>
 Problem independent parameterized classifier $s(x, \theta)$ (trained once).
 ---
+class: middle
+.center.width-100[![](./assets/cern_atlas.png)]
+---
 ## Particle tracker alignment
 .center.width-60[![](./assets/experiment_particle.png)]
 ---
 ## Gravitational strong lensing
 <br>
-In this experiment we are interesting in the intrinsic parameters of a strong gravitational lens and accompanying dark matter subhalo.
+We are interested in the generating parameters of a strong gravitational lens and accompanying dark matter subhalo. The source and lensing plane are assumed to be placed at a specific *redshift*.
 <br>
 <br>
 .center.width-50[![](./assets/experiment_lens.png)]
 <br>
 $s(x, \theta)$ is VGG-11 with the dependence on $\theta$ added in the fully connected part.
 ---
-class:middle
 .center.width-80[![](./assets/experiment_lens_posterior.png)]
 ---
 class: middle, center
