@@ -14,17 +14,29 @@
     <script src="./assets/katex.min.js"></script>
 
     <script type="text/javascript">
-        var options = {sourceUrl: "talk.md",
-                       highlightStyle: "tomorrow"};
-        var renderMath = function() {
-            renderMathInElement(document.body, {delimiters: [
-                {left: "$$", right: "$$", display: true},
-                {left: "$", right: "$", display: false},
-                {left: "\\[", right: "\\]", display: true},
-                {left: "\\(", right: "\\)", display: false},
-            ]});
-        }
+      var options = {sourceUrl: "talk.md",
+                     highlightStyle: "tomorrow"};
+      var renderMath = function() {
+        renderMathInElement(document.body, {delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", display: false},
+        ]});
+      }
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
       var slideshow = remark.create(options, renderMath);
+      window.location.href = '#7';
+      function reset() {
+        slideshow.gotoFirstSlide();
+      }
     </script>
   </body>
+  <script type="text/javascript">
+    setTimeout(function(){
+      reset();
+    }, 1000);
+  </script>
 </html>
