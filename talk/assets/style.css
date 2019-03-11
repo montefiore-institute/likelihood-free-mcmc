@@ -247,7 +247,6 @@ td {
     bottom: 3em;
     left: 124px;
     display: inline-block;
-    filter: grayscale(100%);
 }
 
 .title-slide {

@@ -212,3 +212,7 @@ class: end-slide, center
 count: false
 
 fin
+<br>
+<br>
+<br>
+<span style="font-family: 'Raleway'; font-size: 0.7em; color: white !important;">https://joerihermans.com/papers/lfmcmc.pdf</span>
