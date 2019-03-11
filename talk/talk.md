@@ -228,7 +228,7 @@ class: middle, center
 ---
 ## General cooking recipe
 1. Set $p(\theta)$.
-2. Generate dataset $D$ with tuples $(\theta, x\_\theta)$ where $x\_\theta \sim p(x\vert\theta)$.
+2. Generate dataset $D$ of tuples $(\theta, x\_\theta)$ where $x\_\theta \sim p(x\vert\theta)$ and $\theta\sim p(\theta)$.
 3. Train ensemble of $s(x, \theta)$ on $D$.
   - Save $s(x, \theta)$ at every epoch.
 5. Compute the *Simulated Based Callibration* diagnostic.
