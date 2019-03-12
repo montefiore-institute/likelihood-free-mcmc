@@ -8,7 +8,7 @@ The code relies heavily on [hypothesis](https://github.com/montefiore-ai/hypothe
 ---
 
 ## Presentation
-A presentation summarizing this work can be found in the `talk/` directory.
+A presentation summarizing this work can be found in the `talk/` directory or can be viewed [online](https://joerihermans.com/talks/lfmcmc/).
 
 ---
 
